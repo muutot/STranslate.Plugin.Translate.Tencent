@@ -144,7 +144,7 @@ public class Main : TranslatePluginBase
             }
         };
 
-        var response = await Context.HttpService.PostAsync(Endpoint, payloadObj, options, cancellationToken: cancellationToken);
+        var response = await Context.HttpService.PostAsync(Endpoint, requestPayload, options, cancellationToken: cancellationToken);
         var parsedData = JsonNode.Parse(response);
 
         var error = parsedData?["Response"]?["Error"];
