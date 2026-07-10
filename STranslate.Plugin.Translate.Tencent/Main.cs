@@ -12,8 +12,6 @@ public class Main : TranslatePluginBase
     private const string Action = "TextTranslate";
     private const string Host = "tmt.tencentcloudapi.com";
     private const string Endpoint = $"https://{Host}";
-    private const string Region = "ap-guangzhou";
-
     private Control? _settingUi;
     private SettingsViewModel? _viewModel;
     private Settings Settings { get; set; } = null!;
@@ -127,8 +125,7 @@ public class Main : TranslatePluginBase
             requestPayload,
             Settings.SecretKey,
             date,
-            Service,
-            Region
+            Service
         );
 
         var authorization = $"TC3-HMAC-SHA256 Credential={Settings.SecretId}/{credentialScope}, SignedHeaders={signedHeaders}, Signature={signature}";
@@ -141,8 +138,7 @@ public class Main : TranslatePluginBase
                 ["Host"] = Host,
                 ["X-TC-Action"] = Action,
                 ["X-TC-Timestamp"] = timestamp,
-                ["X-TC-Version"] = Version,
-                ["X-TC-Region"] = Region
+                ["X-TC-Version"] = Version
             }
         };
 
