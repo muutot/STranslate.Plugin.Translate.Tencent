@@ -1,9 +1,9 @@
 {
-  "PluginID": "e84a2c1d5f9b4a7e8c3d6f2a1b9e7d4c",
+  "PluginID": "19286cc2d5a04423835b42fb18c9c0c2",
   "Name": "Tencent",
   "Description": "Tencent plugin for stranslate",
   "Author": "Muu",
-  "Version": "1.1.0",
+  "Version": "1.1.1",
   "Website": "https://github.com/muutot/STranslate.Plugin.Translate.Tencent",
   "ExecuteFileName": "STranslate.Plugin.Translate.Tencent.dll",
   "IconPath": "icon.png"
