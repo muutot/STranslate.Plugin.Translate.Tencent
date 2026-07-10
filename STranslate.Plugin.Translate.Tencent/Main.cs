@@ -81,7 +81,6 @@ public class Main : TranslatePluginBase
         LangEnum.Arabic => "ar",
         LangEnum.Hindi => "hi",
         LangEnum.Cantonese => "zh",
-        LangEnum.ChineseTraditional => "zh-TW",
         _ => "auto"
     };
 
@@ -134,18 +133,20 @@ public class Main : TranslatePluginBase
 
         var authorization = $"TC3-HMAC-SHA256 Credential={Settings.SecretId}/{credentialScope}, SignedHeaders={signedHeaders}, Signature={signature}";
 
-        var headers = new Dictionary<string, string>
+        var options = new Options
         {
-            ["Authorization"] = authorization,
-            ["Content-Type"] = "application/json",
-            ["Host"] = Host,
-            ["X-TC-Action"] = Action,
-            ["X-TC-Timestamp"] = timestamp,
-            ["X-TC-Version"] = Version,
-            ["X-TC-Region"] = Region
+            Headers = new Dictionary<string, string>
+            {
+                ["Authorization"] = authorization,
+                ["Host"] = Host,
+                ["X-TC-Action"] = Action,
+                ["X-TC-Timestamp"] = timestamp,
+                ["X-TC-Version"] = Version,
+                ["X-TC-Region"] = Region
+            }
         };
 
-        var response = await Context.HttpService.PostJsonAsync(Endpoint, requestPayload, headers, cancellationToken: cancellationToken);
+        var response = await Context.HttpService.PostAsync(Endpoint, payloadObj, options, cancellationToken: cancellationToken);
         var parsedData = JsonNode.Parse(response);
 
         var error = parsedData?["Response"]?["Error"];

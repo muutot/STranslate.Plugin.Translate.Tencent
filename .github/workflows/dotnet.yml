@@ -9,6 +9,9 @@ on:
   release:
     types: [published]
   push:
+    branches:
+      - main
+      - master
     tags:
       - "*" # Push events to matching *, i.e. 1.0, 20.15.10
 
