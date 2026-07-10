@@ -113,8 +113,8 @@ public class Main : TranslatePluginBase
         };
         var requestPayload = payloadObj.ToJsonString();
 
-        var canonicalHeaders = $"content-type:application/json; charset=utf-8\nhost:{Host}\nx-tc-action:{Action.ToLowerInvariant()}\n";
-        var signedHeaders = "content-type;host;x-tc-action";
+        var canonicalHeaders = $"content-type:application/json\nhost:{Host}\n";
+        var signedHeaders = "content-type;host";
 
         var (signature, timestamp, credentialScope) = TencentCloudSigner.Sign(
             "POST",
@@ -132,12 +132,13 @@ public class Main : TranslatePluginBase
 
         var options = new Options
         {
-            ContentType = "application/json; charset=utf-8",
+            ContentType = "application/json",
             Headers = new Dictionary<string, string>
             {
                 ["Authorization"] = authorization,
                 ["Host"] = Host,
                 ["X-TC-Action"] = Action,
+                ["X-TC-Region"] = "ap-guangzhou",
                 ["X-TC-Timestamp"] = timestamp,
                 ["X-TC-Version"] = Version
             }

@@ -30,7 +30,8 @@ public static class TencentCloudSigner
 
         var stringToSign = $"{Algorithm}\n{timestamp}\n{credentialScope}\n{hashedCanonicalRequest}";
 
-        var secretDate = HMACSHA256.HashData(Encoding.UTF8.GetBytes(secretKey), Encoding.UTF8.GetBytes("TC3" + date));
+        var tc3SecretKey = Encoding.UTF8.GetBytes("TC3" + secretKey);
+        var secretDate = HMACSHA256.HashData(tc3SecretKey, Encoding.UTF8.GetBytes(date));
         var secretService = HMACSHA256.HashData(secretDate, Encoding.UTF8.GetBytes(service));
         var signKey = HMACSHA256.HashData(secretService, Encoding.UTF8.GetBytes("tc3_request"));
 

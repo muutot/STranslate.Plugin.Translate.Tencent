@@ -3,7 +3,7 @@
   "Name": "Tencent",
   "Description": "Tencent plugin for stranslate",
   "Author": "Muu",
-  "Version": "1.0.0",
+  "Version": "1.1.0",
   "Website": "https://github.com/muutot/STranslate.Plugin.Translate.Tencent",
   "ExecuteFileName": "STranslate.Plugin.Translate.Tencent.dll",
   "IconPath": "icon.png"
